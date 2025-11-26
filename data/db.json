@@ -21,7 +21,12 @@
         "Closing Remarks & Announcements (5:00 PM)"
       ],
       "organizer": "React Community Team",
-      "tags": ["react", "javascript", "frontend", "conference"],
+      "tags": [
+        "react",
+        "javascript",
+        "frontend",
+        "conference"
+      ],
       "slug": "react-conf-2026"
     },
     {
@@ -46,7 +51,13 @@
         "Q&A Session"
       ],
       "organizer": "Vercel",
-      "tags": ["nextjs", "react", "fullstack", "workshop", "vercel"],
+      "tags": [
+        "nextjs",
+        "react",
+        "fullstack",
+        "workshop",
+        "vercel"
+      ],
       "slug": "nextjs-16-workshop"
     },
     {
@@ -70,7 +81,12 @@
         "Real-world Case Studies"
       ],
       "organizer": "Microsoft",
-      "tags": ["typescript", "javascript", "programming", "types"],
+      "tags": [
+        "typescript",
+        "javascript",
+        "programming",
+        "types"
+      ],
       "slug": "typeScript-deep-dive"
     },
     {
@@ -94,7 +110,12 @@
         "Case Studies and Best Practices"
       ],
       "organizer": "Web Performance Group",
-      "tags": ["performance", "optimization", "web", "core-web-vitals"],
+      "tags": [
+        "performance",
+        "optimization",
+        "web",
+        "core-web-vitals"
+      ],
       "slug": "web-performance-masterclass"
     },
     {
@@ -119,7 +140,13 @@
         "Live Demo and Q&A"
       ],
       "organizer": "AI Developers Collective",
-      "tags": ["ai", "machinelearning", "openai", "webdev", "gpt"],
+      "tags": [
+        "ai",
+        "machinelearning",
+        "openai",
+        "webdev",
+        "gpt"
+      ],
       "slug": "ai-Powered-web-development"
     },
     {
@@ -144,8 +171,28 @@
         "Building a Design System"
       ],
       "organizer": "Frontend Masters",
-      "tags": ["css", "tailwind", "design", "frontend", "ui"],
+      "tags": [
+        "css",
+        "tailwind",
+        "design",
+        "frontend",
+        "ui"
+      ],
       "slug": "tailwind-css"
+    }
+  ],
+  "users": [
+    {
+      "id": "76e2",
+      "email": "mosesn579@gmail.com",
+      "password": "123",
+      "confirmPassword": "123"
+    },
+    {
+      "id": "d545",
+      "email": "peterm@gmail.com",
+      "password": "1234",
+      "confirmPassword": "1234"
     }
   ]
 }
