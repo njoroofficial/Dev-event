@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import EventDetailItem from "./EventDetailItem";
 import EventAgenda from "./EventAgenda";
+import BookEvent from "./BookEvent";
 
 // // utility function to generate a slug from a title
 // const createSlug = (title) => {
@@ -16,7 +17,7 @@ import EventAgenda from "./EventAgenda";
 const EventTags = ({ tags }) => (
   <div className="flex flex-row gap-1.5 flex-wrap">
     {tags.map((tag) => (
-      <div className="pill" key={tag}>
+      <div className="pill mb-8" key={tag}>
         {tag}
       </div>
     ))}
@@ -147,6 +148,25 @@ const EventContent = ({ slug }) => {
 
           <EventTags tags={eventDetails.tags} />
         </div>
+
+        {/* right side - booking form */}
+
+        <aside className="booking">
+          <div className="signup-card">
+            <h2>Book Your Spot</h2>
+
+            {bookings > 0 ? (
+              <p className="text-sm">
+                Join {bookings} people who have already booked their spot!
+              </p>
+            ) : (
+              <p className="text-sm">Be the first to book your spot!</p>
+            )}
+
+            {/* book event component */}
+            <BookEvent />
+          </div>
+        </aside>
       </div>
     </div>
   );
