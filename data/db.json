@@ -1,7 +1,7 @@
 {
   "events": [
     {
-      "title": "React Conference 2025",
+      "title": "React Conference 2026",
       "description": "Annual React conference bringing together developers from around the world to learn about the latest in React development",
       "overview": "Join the biggest React event of the year! Learn about the latest React features, best practices, and network with industry leaders. This conference features keynote speakers from Meta, Vercel, and other major tech companies. Topics include React Server Components, Suspense, concurrent rendering, and the future of React development. Whether you're a beginner or an expert, there's something for everyone.",
       "image": "/images/event1.png",
@@ -21,10 +21,11 @@
         "Closing Remarks & Announcements (5:00 PM)"
       ],
       "organizer": "React Community Team",
-      "tags": ["react", "javascript", "frontend", "conference"]
+      "tags": ["react", "javascript", "frontend", "conference"],
+      "slug": "react-conf-2026"
     },
     {
-      "title": "Next.js 15 Workshop",
+      "title": "Next.js 16 Workshop",
       "description": "Comprehensive hands-on workshop covering Next.js 15, App Router, Server Actions, and modern web development patterns",
       "overview": "Master Next.js 15 in this comprehensive full-day workshop. Learn about Server Components, Server Actions, streaming, caching strategies, and production deployment. Build a full-stack application from scratch using the latest App Router patterns. Topics include: routing, layouts, loading states, error handling, data fetching, form handling with Server Actions, image optimization, and Vercel deployment. Perfect for developers looking to level up their Next.js skills.",
       "image": "/images/event2.png",
@@ -45,7 +46,8 @@
         "Q&A Session"
       ],
       "organizer": "Vercel",
-      "tags": ["nextjs", "react", "fullstack", "workshop", "vercel"]
+      "tags": ["nextjs", "react", "fullstack", "workshop", "vercel"],
+      "slug": "nextjs-16-workshop"
     },
     {
       "title": "TypeScript Deep Dive",
@@ -68,7 +70,8 @@
         "Real-world Case Studies"
       ],
       "organizer": "Microsoft",
-      "tags": ["typescript", "javascript", "programming", "types"]
+      "tags": ["typescript", "javascript", "programming", "types"],
+      "slug": "typeScript-deep-dive"
     },
     {
       "title": "Web Performance Masterclass",
@@ -91,7 +94,8 @@
         "Case Studies and Best Practices"
       ],
       "organizer": "Web Performance Group",
-      "tags": ["performance", "optimization", "web", "core-web-vitals"]
+      "tags": ["performance", "optimization", "web", "core-web-vitals"],
+      "slug": "web-performance-masterclass"
     },
     {
       "title": "AI-Powered Web Development",
@@ -115,7 +119,8 @@
         "Live Demo and Q&A"
       ],
       "organizer": "AI Developers Collective",
-      "tags": ["ai", "machinelearning", "openai", "webdev", "gpt"]
+      "tags": ["ai", "machinelearning", "openai", "webdev", "gpt"],
+      "slug": "ai-Powered-web-development"
     },
     {
       "title": "Modern CSS and Tailwind CSS",
@@ -139,7 +144,8 @@
         "Building a Design System"
       ],
       "organizer": "Frontend Masters",
-      "tags": ["css", "tailwind", "design", "frontend", "ui"]
+      "tags": ["css", "tailwind", "design", "frontend", "ui"],
+      "slug": "tailwind-css"
     }
   ]
 }
