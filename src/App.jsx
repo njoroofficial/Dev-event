@@ -3,6 +3,8 @@ import LightRays from "./components/LightRays";
 import HomePage from "./pages/HomePage";
 import NavBar from "./components/NavBar";
 import EventPage from "./pages/EventPage";
+import SignUp from "./pages/SignUp";
+import SignIn from "./pages/SignIn";
 
 function App() {
   return (
@@ -10,6 +12,8 @@ function App() {
       <BrowserRouter>
         <NavBar />
         <Routes>
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/signin" element={<SignIn />} />
           <Route path="/" element={<HomePage />} />
           <Route path="/events/:slug" element={<EventPage />} />
         </Routes>
