@@ -164,7 +164,10 @@ const EventContent = ({ slug }) => {
             )}
 
             {/* book event component */}
-            <BookEvent />
+            <BookEvent
+              eventName={eventDetails.title}
+              eventDetail={eventDetails.description}
+            />
           </div>
         </aside>
       </div>
