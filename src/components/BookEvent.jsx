@@ -21,7 +21,7 @@ const BookEvent = ({ event }) => {
     e.preventDefault();
     setLoading(true);
 
-    // 1. Save Booking to Database (if user is logged in)
+    // Save Booking to Database (if user is logged in)
     if (currentUser) {
       const newBooking = {
         userId: currentUser.id,
@@ -54,7 +54,7 @@ const BookEvent = ({ event }) => {
       );
     }
 
-    // 2. Send Email (Existing Logic)
+    // Send Email
     const SERVICE_ID = "service_eqs914o";
     const TEMPLATE_ID = "template_fpfg7tl";
     const PUBLIC_KEY = "v8pA_DkmPyxjPG5T0";

@@ -68,7 +68,7 @@ const ManageBookings = () => {
     }
   };
 
-  // 1. Not Logged In State
+  // Not Logged In State
   if (!currentUser) {
     return (
       <div className="min-h-[60vh] flex flex-col items-center justify-center text-center px-4 pt-20">
@@ -86,7 +86,7 @@ const ManageBookings = () => {
     );
   }
 
-  // 2. Loading State
+  // Loading State
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -97,7 +97,7 @@ const ManageBookings = () => {
     );
   }
 
-  // 3. Error State
+  // Error State
   if (error) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center text-red-400 gap-4">
@@ -109,7 +109,7 @@ const ManageBookings = () => {
     );
   }
 
-  // 4. Main Content
+  // Main Content
   return (
     <section className="container mx-auto px-6 py-10 min-h-screen">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">

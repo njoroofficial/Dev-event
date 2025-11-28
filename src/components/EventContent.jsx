@@ -163,7 +163,7 @@ const EventContent = ({ slug }) => {
               <p className="text-sm">Be the first to book your spot!</p>
             )}
 
-            {/* book event component - CHANGED: Passing full event object */}
+            {/* book event component */}
             <BookEvent event={eventDetails} />
           </div>
         </aside>
