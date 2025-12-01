@@ -2,7 +2,9 @@ import React, { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../lib/auth-context";
 
-const API_URL = "http://localhost:3000/events";
+// Use environment variable if available, otherwise fallback to localhost
+const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+const API_URL = `${BASE_URL}/events`;
 
 const AdminDashboard = () => {
   const { currentUser } = useAuth();

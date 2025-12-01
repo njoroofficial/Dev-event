@@ -3,8 +3,9 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 // 1. Create the Context
 const AuthContext = createContext();
 
-// Base URL for the JSON Server users endpoint
-const API_URL = "http://localhost:3000/users";
+// Use environment variable if available, otherwise fallback to localhost
+const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+const API_URL = `${BASE_URL}/users`;
 
 // 2. Custom hook to use the auth context easily
 export const useAuth = () => {
