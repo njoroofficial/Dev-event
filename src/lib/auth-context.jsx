@@ -3,7 +3,6 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 // 1. Create the Context
 const AuthContext = createContext();
 
-// Base URL for the JSON Server users endpoint
 const API_URL = "http://localhost:3000/users";
 
 // 2. Custom hook to use the auth context easily
