@@ -21,38 +21,7 @@ events = [EventBase(
     image = "/images/event1.png",
     location = "San Francisco, CA",
     venue = "Tech Convention Center",
-    date = "2025-12-12",
-    time = "09:00",
-    mode = "hybrid",
-    audience = "React Developers, Frontend Engineers, Full-stack Developers",
-    overview = "Join the biggest React event of the year! Learn about the latest React features, best practices, and network with industry leaders. This conference features keynote speakers from Meta, Vercel, and other major tech companies. Topics include React Server Components, Suspense, concurrent rendering, and the future of React development. Whether you're a beginner or an expert, there's something for everyone.",
-    description = "Annual React conference bringing together developers from around the world to learn about the latest in React development",
-    organizer = "React Community Team",
-    tags = [
-        "react",
-        "javascript",
-        "frontend",
-        "conference"
-      ],
-    slug = "react-conf-2027",
-    agenda = [
-        "Registration & Welcome Coffee (8:00 AM)",
-        "Opening Keynote: Future of React (9:00 AM)",
-        "Workshop: Server Components Deep Dive (10:30 AM)",
-        "Lunch Break & Networking (12:30 PM)",
-        "Panel Discussion: React Ecosystem (2:00 PM)",
-        "Advanced Performance Optimization (3:30 PM)",
-        "Closing Remarks & Announcements (5:00 PM)"
-      ],
-    id = 1,
-    bookedSpots= 10
-    ),
-    EventBase(
-    title = "React Conference 2026",
-    image = "/images/event1.png",
-    location = "San Francisco, CA",
-    venue = "Tech Convention Center",
-    date = "2025-12-12",
+    date = "2026-12-12",
     time = "09:00",
     mode = "hybrid",
     audience = "React Developers, Frontend Engineers, Full-stack Developers",
@@ -75,15 +44,49 @@ events = [EventBase(
         "Advanced Performance Optimization (3:30 PM)",
         "Closing Remarks & Announcements (5:00 PM)"
       ],
+    id = 1,
+    ),
+    EventBase(
+    title = "Next.js 16 Workshop",
+    image = "/images/event2.png",
+    location = "Virtual Event",
+    venue = "Online via Zoom",
+    date = "2026-11-20",
+    time = "11:00",
+    mode = "online",
+    audience = "Web Developers, React Developers, Full-stack Engineers",
+    overview = "Join the biggest React event of the year! Learn about the latest React features, best practices, and network with industry leaders. This conference features keynote speakers from Meta, Vercel, and other major tech companies. Topics include React Server Components, Suspense, concurrent rendering, and the future of React development. Whether you're a beginner or an expert, there's something for everyone.",
+    description = "Annual React conference bringing together developers from around the world to learn about the latest in React development",
+    organizer = "Vercel",
+    tags = [
+        "nextjs",
+        "react",
+        "fullstack",
+        "workshop",
+        "vercel"
+      ],
+    slug = "nextjs-16-workshop",
+    agenda = [
+        "Introduction to Next.js 15 Features",
+        "App Router Architecture",
+        "Server Components vs Client Components",
+        "Server Actions and Form Handling",
+        "Data Fetching Patterns",
+        "Caching Strategies",
+        "Deployment Best Practices",
+        "Q&A Session"
+      ],
     id = 2,
-    bookedSpots= 30
     )]
 
 def init_db():
     db = SessionLocal()
 
-    for event in events:
-        db.add(database_model.Event(**event.model_dump()))
+    count = db.query(database_model.Event).count()
+
+    if count == 0:
+        for event in events:
+            db.add(database_model.Event(**event.model_dump()))
     db.commit()
 
 init_db()
