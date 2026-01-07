@@ -1,7 +1,8 @@
-from fastapi import FastAPI
+from fastapi import Depends,FastAPI
 from models import EventBase
 from database import SessionLocal, engine
 import database_model
+from sqlalchemy.orm import Session
 
 # initializing the app
 app = FastAPI()
@@ -79,6 +80,16 @@ events = [EventBase(
     id = 2,
     )]
 
+def get_db():
+    # open database
+    db = SessionLocal()
+    try:
+    # use database
+        yield db
+    # close database
+    finally:
+        db.close()
+
 def init_db():
     db = SessionLocal()
 
@@ -93,22 +104,28 @@ init_db()
 
 # get all events
 @app.get("/events")
-def get_all_events():
-    return events
+def get_all_events(db: Session = Depends(get_db)): # dependency injection
+
+    # fetch all events from database
+    db_events = db.query(database_model.Event).all()
+    return db_events
 
 # get one event
-@app.get("/event/{id}")
-def get_one_event(id: int):
-    for event in events:
-        if event.id == id:
-            return event
+@app.get("/event/{slug}")
+def get_one_event(slug: str, db: Session = Depends(get_db)):
+    db_event = db.query(database_model.Event).filter(database_model.Event.slug == slug).first()
+    
+    if db_event: 
+        return db_event
     
     return "Event not found"
 
 # add an event
 @app.post("/event")
-def add_event(event: EventBase):
-    events.append(event)
+def add_event(event: EventBase, db: Session = Depends(get_db)):
+
+    # add events to database
+    db.add(database_model.Event(**event.model_dump()))
     return event
 
 # update a event
