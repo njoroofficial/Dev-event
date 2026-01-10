@@ -136,10 +136,25 @@ def update_event(slug: str, event: EventBase, db: Session = Depends(get_db)):
     db_event = db.query(database_model.Event).filter(database_model.Event.slug == slug).first()
 
     if db_event:
-        pass
+        db_event.title = event.title
+        db_event.image = event.image
+        db_event.location = event.location
+        db_event.venue = event.venue
+        db_event.date = event.date
+        db_event.time = event.time
+        db_event.mode = event.mode
+        db_event.audience = event.audience
+        db_event.agenda = event.agenda
+        db_event.overview = event.overview
+        db_event.description = event.description
+        db_event.tags = event.tags
+        db_event.slug = event.slug
+        db_event.organizer = event.organizer
+
+        db.commit()
     else:
         return "Event not found" 
-
+ 
 # delete an event
 @app.delete("/event")
 def del_event(slug: str, db: Session = Depends(get_db)):

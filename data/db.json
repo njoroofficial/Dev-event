@@ -12,12 +12,7 @@
       "overview": "Join the biggest React event of the year! Learn about the latest React features, best practices, and network with industry leaders. This conference features keynote speakers from Meta, Vercel, and other major tech companies. Topics include React Server Components, Suspense, concurrent rendering, and the future of React development. Whether you're a beginner or an expert, there's something for everyone.",
       "description": "Annual React conference bringing together developers from around the world to learn about the latest in React development",
       "organizer": "React Community Team",
-      "tags": [
-        "react",
-        "javascript",
-        "frontend",
-        "conference"
-      ],
+      "tags": ["react", "javascript", "frontend", "conference"],
       "slug": "react-conf-2026",
       "agenda": [
         "Registration & Welcome Coffee (8:00 AM)",
@@ -52,13 +47,7 @@
         "Q&A Session"
       ],
       "organizer": "Vercel",
-      "tags": [
-        "nextjs",
-        "react",
-        "fullstack",
-        "workshop",
-        "vercel"
-      ],
+      "tags": ["nextjs", "react", "fullstack", "workshop", "vercel"],
       "slug": "nextjs-16-workshop",
       "id": "414c"
     },
@@ -83,12 +72,7 @@
         "Real-world Case Studies"
       ],
       "organizer": "Microsoft",
-      "tags": [
-        "typescript",
-        "javascript",
-        "programming",
-        "types"
-      ],
+      "tags": ["typescript", "javascript", "programming", "types"],
       "slug": "typeScript-deep-dive",
       "id": "4e28"
     },
@@ -113,12 +97,7 @@
         "Case Studies and Best Practices"
       ],
       "organizer": "Web Performance Group",
-      "tags": [
-        "performance",
-        "optimization",
-        "web",
-        "core-web-vitals"
-      ],
+      "tags": ["performance", "optimization", "web", "core-web-vitals"],
       "slug": "web-performance-masterclass",
       "id": "edf3"
     },
@@ -144,13 +123,7 @@
         "Live Demo and Q&A"
       ],
       "organizer": "AI Developers Collective",
-      "tags": [
-        "ai",
-        "machinelearning",
-        "openai",
-        "webdev",
-        "gpt"
-      ],
+      "tags": ["ai", "machinelearning", "openai", "webdev", "gpt"],
       "slug": "ai-Powered-web-development",
       "id": "c13f"
     },
@@ -176,13 +149,7 @@
         "Building a Design System"
       ],
       "organizer": "Frontend Masters",
-      "tags": [
-        "css",
-        "tailwind",
-        "design",
-        "frontend",
-        "ui"
-      ],
+      "tags": ["css", "tailwind", "design", "frontend", "ui"],
       "slug": "tailwind-css",
       "id": "ce27"
     }
