@@ -1,4 +1,5 @@
 from fastapi import Depends,FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from models import EventBase
 from database import SessionLocal, engine
 import database_model
@@ -6,6 +7,13 @@ from sqlalchemy.orm import Session
 
 # initializing the app
 app = FastAPI()
+
+# setup CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins = ["http://localhost:5173"],
+    allow_methods = ["*"]
+)
 
 # create database tables
 database_model.Base.metadata.create_all(bind=engine)
@@ -111,7 +119,7 @@ def get_all_events(db: Session = Depends(get_db)): # dependency injection
     return db_events
 
 # get one event
-@app.get("/event/{slug}")
+@app.get("/events/{slug}")
 def get_one_event(slug: str, db: Session = Depends(get_db)):
     db_event = db.query(database_model.Event).filter(database_model.Event.slug == slug).first()
     
@@ -121,7 +129,7 @@ def get_one_event(slug: str, db: Session = Depends(get_db)):
     return "Event not found"
 
 # add an event
-@app.post("/event")
+@app.post("/events")
 def add_event(event: EventBase, db: Session = Depends(get_db)):
 
     # add events to database
@@ -130,7 +138,7 @@ def add_event(event: EventBase, db: Session = Depends(get_db)):
     return event
 
 # update a event
-@app.put("/event")
+@app.put("/events/{slug}")
 def update_event(slug: str, event: EventBase, db: Session = Depends(get_db)):
     # check if event exits
     db_event = db.query(database_model.Event).filter(database_model.Event.slug == slug).first()
@@ -152,11 +160,12 @@ def update_event(slug: str, event: EventBase, db: Session = Depends(get_db)):
         db_event.organizer = event.organizer
 
         db.commit()
+        return "Event updated"
     else:
         return "Event not found" 
  
 # delete an event
-@app.delete("/event")
+@app.delete("/events/{slug}")
 def del_event(slug: str, db: Session = Depends(get_db)):
     db_event = db.query(database_model.Event).filter(database_model.Event.slug == slug).first()
 
