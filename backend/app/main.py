@@ -4,9 +4,11 @@ from models import EventBase
 from database import SessionLocal, engine
 import database_model
 from sqlalchemy.orm import Session
+import auth
 
 # initializing the app
 app = FastAPI()
+app.include_router(auth.router)
 
 # setup CORS
 app.add_middleware(

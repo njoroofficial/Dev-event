@@ -42,9 +42,10 @@ class EventResponse(EventBase):
 # --- User Schemas ---
 class UserBase(BaseModel):
     email: EmailStr
+    password: str
 
 class UserCreate(UserBase):
-    password: str  # Plain text here; hash it in your logic before saving to DB
+    password: str  
 
 class UserResponse(UserBase):
     id: int
