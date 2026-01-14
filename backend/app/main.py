@@ -98,18 +98,25 @@ def init_db():
         json_path = Path(__file__).parent.parent.parent / "data" / "db.json"
         
         if json_path.exists():
-            with open(json_path, "r") as f:
-                data = json.load(f)
-            
-            for event_data in data.get("events", []):
-                # Remove 'id' field as SQLite will auto-generate it
-                event_data.pop("id", None)
+            try:
+                with open(json_path, "r") as f:
+                    data = json.load(f)
                 
-                db_event = database_model.Event(**event_data)
-                db.add(db_event)
-            
-            db.commit()
-            print(f"Seeded {len(data.get('events', []))} events from db.json")
+                events = data.get("events", [])
+                for event_data in events:
+                    # Remove 'id' field as SQLite will auto-generate it
+                    event_data.pop("id", None)
+                    
+                    db_event = database_model.Event(**event_data)
+                    db.add(db_event)
+                
+                db.commit()
+                print(f"Seeded {len(events)} events from db.json")
+            except json.JSONDecodeError as e:
+                print(f"Error: Failed to parse {json_path}: {e}")
+            except Exception as e:
+                db.rollback()
+                print(f"Error: Failed to seed events: {e}")
         else:
             print(f"Warning: {json_path} not found, no events seeded")
     
