@@ -1,47 +1,6 @@
 const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
 
-/**
- * Base fetch wrapper with error handling
- */
-async function fetchAPI(endpoint, options = {}) {
-  const url = `${API_BASE_URL}${endpoint}`;
-
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-      ...options.headers,
-    },
-    ...options,
-  };
-
-  try {
-    const response = await fetch(url, config);
-
-    if (!response.ok) {
-      const error = await response.json().catch(() => ({}));
-      throw new APIError(
-        error.message || `HTTP error! status: ${response.status}`,
-        response.status,
-        error
-      );
-    }
-
-    // Handle 204 No Content
-    if (response.status === 204) {
-      return null;
-    }
-
-    return await response.json();
-  } catch (error) {
-    if (error instanceof APIError) throw error;
-    throw new APIError(error.message, 0, null);
-  }
-}
-
-/**
- * Custom API Error class
- */
-export class APIError extends Error {
+class APIError extends Error {
   constructor(message, status, data) {
     super(message);
     this.name = "APIError";
@@ -50,59 +9,57 @@ export class APIError extends Error {
   }
 }
 
-/**
- * Events API
- */
+async function fetchAPI(endpoint, options = {}) {
+  const url = `${API_BASE_URL}${endpoint}`;
+
+  const token = localStorage.getItem("token");
+
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      ...(token && { Authorization: `Bearer ${token}` }),
+      ...options.headers,
+    },
+    ...options,
+  };
+
+  const response = await fetch(url, config);
+
+  if (!response.ok) {
+    const error = await response.json().catch(() => ({}));
+    throw new APIError(
+      error.detail || `HTTP error! status: ${response.status}`,
+      response.status,
+      error
+    );
+  }
+
+  if (response.status === 204) return null;
+  return response.json();
+}
+
+export const authAPI = {
+  login: (email, password) =>
+    fetchAPI("/auth/login", {
+      method: "POST",
+      body: JSON.stringify({ email, password }),
+    }),
+
+  signup: (email, password) =>
+    fetchAPI("/auth/", {
+      method: "POST",
+      body: JSON.stringify({ email, password }),
+    }),
+};
+
 export const eventsAPI = {
   getAll: () => fetchAPI("/events"),
-
   getBySlug: (slug) => fetchAPI(`/events/${slug}`),
-
-  create: (eventData) =>
-    fetchAPI("/events", {
-      method: "POST",
-      body: JSON.stringify(eventData),
-    }),
-
-  update: (slug, eventData) =>
-    fetchAPI(`/events/${slug}`, {
-      method: "PUT",
-      body: JSON.stringify(eventData),
-    }),
-
-  delete: (slug) =>
-    fetchAPI(`/events/${slug}`, {
-      method: "DELETE",
-    }),
+  create: (data) =>
+    fetchAPI("/events", { method: "POST", body: JSON.stringify(data) }),
+  update: (slug, data) =>
+    fetchAPI(`/events/${slug}`, { method: "PUT", body: JSON.stringify(data) }),
+  delete: (slug) => fetchAPI(`/events/${slug}`, { method: "DELETE" }),
 };
 
-/**
- * Users API (for future FastAPI migration)
- */
-export const usersAPI = {
-  getByEmail: (email) => fetchAPI(`/users?email=${encodeURIComponent(email)}`),
-
-  create: (userData) =>
-    fetchAPI("/users", {
-      method: "POST",
-      body: JSON.stringify(userData),
-    }),
-};
-
-/**
- * Bookings API (for future FastAPI migration)
- */
-export const bookingsAPI = {
-  getByUserId: (userId) => fetchAPI(`/bookings?userId=${userId}`),
-
-  create: (bookingData) =>
-    fetchAPI("/bookings", {
-      method: "POST",
-      body: JSON.stringify(bookingData),
-    }),
-
-  delete: (id) =>
-    fetchAPI(`/bookings/${id}`, {
-      method: "DELETE",
-    }),
-};
+export { APIError };
