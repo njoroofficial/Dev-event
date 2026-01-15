@@ -1,7 +1,7 @@
-import { useAuth } from "@/lib/auth-context";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Loader2 } from "lucide-react";
+import { useAuth } from "@/lib/auth-context";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -9,9 +9,8 @@ const SignIn = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // custom hook to access context functions
-  const { login } = useAuth();
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,10 +18,16 @@ const SignIn = () => {
     setLoading(true);
 
     try {
-      await login(email, password);
-      navigate("/home");
+      const user = await login(email, password);
+
+      // Redirect based on user role
+      if (user.email === "deveventadmin@gmail.com") {
+        navigate("/admin");
+      } else {
+        navigate("/home");
+      }
     } catch (err) {
-      setError(err.message || "Login failed. Please try again.");
+      setError(err.message || "Invalid email or password");
     } finally {
       setLoading(false);
     }

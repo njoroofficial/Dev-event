@@ -127,7 +127,7 @@ init_db()
 # booking routes
 
 # get all bookings for a user
-@app.get("bookings/{user_id}", response_model=list[BookingResponse])
+@app.get("/bookings/{user_id}", response_model=list[BookingResponse])
 def get_user_bookings(user_id: int, db: Session = Depends(get_db)):
     bookings = db.query(database_model.Booking).filter(
         database_model.Booking.user_id == user_id
